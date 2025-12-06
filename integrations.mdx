@@ -1,0 +1,140 @@
+---
+title: Integrations
+description: Connect Work-ai with your favorite tools and platforms
+---
+
+## Supported Integrations
+
+Work-ai integrates seamlessly with popular development and collaboration tools to enhance your workflow.
+
+<Columns cols={3}>
+  <Card title="GitHub" icon="github" href="#github">
+    Sync documentation with your GitHub repositories.
+  </Card>
+  <Card title="Slack" icon="message-square" href="#slack">
+    Receive notifications and collaborate in Slack channels.
+  </Card>
+  <Card title="Jira" icon="check-square" href="#jira">
+    Link documentation to Jira issues and projects.
+  </Card>
+</Columns>
+
+## GitHub Integration
+
+Connect your GitHub repositories to automatically sync documentation changes.
+
+<Steps>
+  <Step title="Install GitHub App" icon="download">
+    Install the Work-ai GitHub App from the GitHub Marketplace.
+  </Step>
+  <Step title="Authorize Repository" icon="key">
+    Grant access to the repositories you want to sync.
+  </Step>
+  <Step title="Configure Sync Settings" icon="settings">
+    Set up automatic syncing and webhook triggers.
+  </Step>
+</Steps>
+
+<CodeGroup tabs="Webhook Setup,API Sync">
+  ````javascript
+// Webhook configuration
+const webhookConfig = {
+  url: 'https://workai.com/webhooks/github',
+  events: ['push', 'pull_request']
+};
+  ````
+  ````python
+from workai.integrations import GitHubIntegration
+
+gh = GitHubIntegration(api_key='your-key')
+gh.sync_repository('owner/repo')
+  ````
+</CodeGroup>
+
+## Slack Integration
+
+Get real-time notifications and enable documentation collaboration in Slack.
+
+<Tabs>
+  <Tab title="Notifications" icon="bell">
+    <Expandable title="Event Alerts" default-open="true">
+      Receive notifications for documentation updates and reviews.
+    </Expandable>
+    <Expandable title="Custom Channels" default-open="false">
+      Configure notifications for specific Slack channels.
+    </Expandable>
+  </Tab>
+  <Tab title="Collaboration" icon="users">
+    <Expandable title="Slash Commands" default-open="true">
+      Use `/workai` commands to interact with documentation.
+    </Expandable>
+    <Expandable title="Document Sharing" default-open="false">
+      Share and discuss documents directly in Slack.
+    </Expandable>
+  </Tab>
+</Tabs>
+
+<Callout kind="tip">Use Slack integrations to keep your team informed about documentation changes without leaving the conversation.</Callout>
+
+## Jira Integration
+
+Link your documentation to Jira issues for better project tracking.
+
+<ExpandableGroup>
+  <Expandable title="Issue Linking" default-open="true">
+    Automatically link documentation pages to related Jira issues.
+  </Expandable>
+  <Expandable title="Status Sync" default-open="false">
+    Keep documentation status in sync with Jira issue states.
+  </Expandable>
+  <Expandable title="Workflow Automation" default-open="false">
+    Trigger documentation updates based on Jira workflow changes.
+  </Expandable>
+</ExpandableGroup>
+
+## Custom Integrations
+
+Build your own integrations using Work-ai's REST API and webhooks.
+
+<CodeGroup tabs="Webhook Handler,API Client">
+  ````javascript
+const express = require('express');
+const app = express();
+
+app.post('/webhook', (req, res) => {
+  const { event, data } = req.body;
+  // Handle webhook event
+  res.sendStatus(200);
+});
+  ````
+  ````python
+import requests
+
+class CustomIntegration:
+    def __init__(self, api_key):
+        self.api_key = api_key
+    
+    def create_document(self, title, content):
+        response = requests.post(
+            'https://api.workai.com/documents',
+            headers={'Authorization': f'Bearer {self.api_key}'},
+            json={'title': title, 'content': content}
+        )
+        return response.json()
+  ````
+</CodeGroup>
+
+## Integration Best Practices
+
+Follow these guidelines to ensure smooth integration with Work-ai.
+
+| Best Practice | Description |
+|---------------|-------------|
+| Use Webhooks | Real-time updates without polling |
+| Handle Errors | Implement proper error handling and retries |
+| Rate Limiting | Respect API rate limits to avoid throttling |
+| Secure Keys | Store API keys securely and rotate regularly |
+
+<Callout kind="info">Regularly review and update your integrations to take advantage of new features and improvements.</Callout>
+
+Integrating Work-ai with your existing tools can significantly enhance your documentation workflow and keep your team connected.

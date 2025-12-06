@@ -1,0 +1,106 @@
+---
+title: Configuration
+description: Learn how to configure Work-ai for your documentation needs
+---
+
+## Basic Configuration
+
+Configuring Work-ai is straightforward and can be done through our web interface or programmatically via the API. Start by setting up your project settings and user permissions.
+
+<Steps>
+  <Step title="Create Project" icon="folder">
+    Begin by creating a new project in your Work-ai dashboard.
+    
+    <CodeGroup tabs="UI,API">
+      ````bash
+      # Via UI: Navigate to Projects > Create New
+      ````
+      ````javascript
+const response = await fetch('/api/projects', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ name: 'My Project' })
+});
+      ````
+    </CodeGroup>
+  </Step>
+  <Step title="Set Permissions" icon="shield">
+    Configure user roles and access levels for your team members.
+  </Step>
+  <Step title="Customize Settings" icon="settings">
+    Adjust theme, notifications, and other preferences.
+  </Step>
+</Steps>
+
+## Advanced Settings
+
+For more complex setups, explore our advanced configuration options that allow fine-tuning of Work-ai's behavior.
+
+<Tabs>
+  <Tab title="Security" icon="lock">
+    <Expandable title="API Key Management" default-open="true">
+      Generate and manage API keys for secure access.
+      
+      <Callout kind="tip">Rotate your API keys regularly for enhanced security.</Callout>
+    </Expandable>
+    <Expandable title="Two-Factor Authentication" default-open="false">
+      Enable 2FA for additional account protection.
+    </Expandable>
+  </Tab>
+  <Tab title="Integrations" icon="link">
+    <Expandable title="Webhook Configuration" default-open="true">
+      Set up webhooks to receive real-time notifications.
+    </Expandable>
+    <Expandable title="Third-Party Services" default-open="false">
+      Connect with external tools and services.
+    </Expandable>
+  </Tab>
+</Tabs>
+
+## Environment Variables
+
+Work-ai supports configuration through environment variables for deployment flexibility.
+
+<CodeGroup tabs="Docker,Heroku">
+  ````bash
+# Docker environment
+WORKAI_API_KEY=your-api-key
+WORKAI_PROJECT_ID=your-project-id
+WORKAI_DATABASE_URL=postgresql://localhost/workai
+  ````
+  ````bash
+# Heroku config vars
+heroku config:set WORKAI_API_KEY=your-api-key
+heroku config:set WORKAI_PROJECT_ID=your-project-id
+  ````
+</CodeGroup>
+
+## Troubleshooting
+
+Common configuration issues and their solutions.
+
+<ExpandableGroup>
+  <Expandable title="Connection Timeout" default-open="false">
+    If you're experiencing connection timeouts, check your network settings and API key validity.
+  </Expandable>
+  <Expandable title="Permission Denied" default-open="false">
+    Ensure your user has the appropriate permissions for the requested action.
+  </Expandable>
+  <Expandable title="Invalid Configuration" default-open="false">
+    Verify that all required fields are properly set in your configuration.
+  </Expandable>
+</ExpandableGroup>
+
+<Callout kind="alert">Always test your configuration changes in a staging environment before deploying to production.</Callout>
+
+## Performance Tuning
+
+Optimize Work-ai for high-performance scenarios with these advanced settings.
+
+| Setting | Default | Recommended |
+|---------|---------|-------------|
+| Cache TTL | 300s | 600s |
+| Max Connections | 100 | 200 |
+| Timeout | 30s | 60s |
+
+By following these configuration guidelines, you can ensure Work-ai is tailored to your specific documentation requirements and performs optimally in your environment.
